@@ -24,6 +24,7 @@ module.exports = {
         extensions: [".tsx"],
       },
     ],
+    "import/no-extraneous-dependencies": ["error", { devDependencies: true, }],
     "import/extensions": "off",
     "import/prefer-default-export": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
