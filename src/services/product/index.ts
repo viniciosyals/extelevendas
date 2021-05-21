@@ -1,5 +1,6 @@
-import { api } from './../api'
-import { productUrl } from './../../config'
+import { AxiosInstance } from 'axios'
+import { api } from '../api'
+import { productUrl } from '../../config'
 
 interface Product {
     id: number
@@ -12,24 +13,26 @@ interface Product {
 }
 
 class ProductService {
-    async find() {
-        return await api.get<Product[]>(productUrl)
+    api: AxiosInstance = api
+
+    find() {
+        return this.api.get<Product[]>(productUrl)
     }
 
-    async create() {
-        // not implemented
+    create(model: Product) {
+        return this.api.post<Product>(productUrl, model)
     }
 
-    async findById() {
-        // not implemented
+    findById(id: number) {
+        return this.api.get<Product>(`${productUrl}/${id}`)
     }
 
-    async delete() {
-        // not implemented
+    delete(id: number) {
+        return this.api.delete<Product>(`${productUrl}/${id}`)
     }
 
-    async update() {
-        // not implemented
+    update(id: number, model: Product) {
+        return this.api.put<Product>(`${productUrl}/${id}`, model)
     }
 }
 
